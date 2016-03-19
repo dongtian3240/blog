@@ -1,0 +1,138 @@
+<div class="row">
+            
+                 <div class="col-lg-12">
+                       <ul class="breadcrumb page-header">
+				<li>
+					 <a href="/admin">首页</a>
+				</li>
+				<li>
+					 <a class="active">分类管理</a>
+				</li>
+			</ul>
+                    </div>
+					
+					
+					
+					<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="thumbnail">
+						<div class="table-responsive">
+						<button type="button" id="btn_newLabel" class="btn btn-info btn-md pull-right">新建分类</button>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>编号</th>
+                                            <th>分类名称</th>
+                                            <th>创建时间</th>
+                                            <th>修改时间</th>
+											 <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+									
+									
+									
+									{{range $indx,$label := .pager.DataList}}
+										
+										 <tr>
+                                            <td>{{increment $indx 1}}</td>
+                                            <td>{{$label.LabelName}}</td>
+                                            <td>{{dateformat $label.CreateTime "2006-01-02"}}</td>
+                                            <td>{{dateformat $label.UpdateTime "2006-01-02"}}</td>
+											 <td> <button type="button" va="{{$label.LabelId}}" class="btn btn-link btn_editLabel">修改</button><button type="button" va="{{$label.LabelId}}"  class="btn btn-link btn_deleteLabel">删除</button></td>
+                                        </tr>
+										
+									{{else}}
+									 <tr>
+                                            <td colspan="5"  class="text-center">暂无数据</td>
+                               
+                                        </tr>
+									{{end }}
+									</tbody>
+                                </table>
+								
+								
+                            </div>
+							
+                            <!-- /.table-responsive -->
+                        </div>
+					</div>
+				</div>
+				{{if ge .pager.TotalPage 2}}
+					
+				<div class="row clearfix">
+		<div class="col-md-12 column">
+			<ul class="pagination pagination-md pull-right">
+			
+			{{if ge .pager.PageNum 2 }}
+				<li>
+					 <a href="/admin/label?pageSize={{.pager.PageSize}}&pageNum=1">首页</a>
+				</li>
+				
+				<li>
+					 <a href="/admin/label?pageSize={{.pager.PageSize}}&pageNum={{increment .pager.PageNum -1}}">上一页</a>
+				</li>
+				{{end}}
+				
+				{{if lt .pager.PageNum .pager.TotalPage}}
+				<li>
+					 <a href="/admin/label?pageSize={{.pager.PageSize}}&pageNum={{increment .pager.PageNum 1}}">下一页</a>
+				</li>
+				{{end}}
+				{{if ne .pager.PageNum .pager.TotalPage}}
+				<li>
+					 <a href="/admin/label?pageSize={{.pager.PageSize}}&pageNum={{.pager.TotalPage}}">尾页</a>
+				</li>
+				{{end}}
+			</ul>
+		</div>
+	</div>
+			{{end}}	
+				
+				
+			</div>
+		</div>
+	</div>
+					
+                </div>
+				
+				
+		<div id="newLabelwrap">
+      <form id="newLabelform" role="form">
+        <div class="form-group">
+          <label for="labelName">分类名称</label>
+          <input type="text" class="form-control"
+           id="labelName" name="labelName">
+        </div>
+      </form>
+    </div>
+	
+	
+		<div id="editLabelwrap">
+      <form id="editLabelform" role="form">
+	<input type="hidden" id="labelId" name="labelId" >
+        <div class="form-group">
+          <label for="editlabelName">分类名称</label>
+          <input type="text" class="form-control"
+           id="editlabelName" name="labelName">
+        </div>
+      </form>
+    </div>
+ <!-- jQuery -->
+    <script src="/static/sbadmin/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/sbadmin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/static/sbadmin/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+	
+	  <script src="/static/bootstrap-jquery/js/jquery.bootstrap.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="/static/sbadmin/js/sb-admin-2.js"></script>
+	<script src="/static/layer/layer.js"></script>
+	 <script src="/static/validator/js/bootstrapValidator.js"></script>
+    <script src="/static/validator/js/language/zh_CN.js"></script>
+	 <script src="/static/js/admin/label/label.js"></script>

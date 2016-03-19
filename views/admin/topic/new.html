@@ -1,0 +1,126 @@
+<div class="row">
+            
+                 <div class="col-lg-12">
+                       <ul class="breadcrumb page-header">
+				<li>
+					 <a href="/admin">首页</a>
+				</li>
+				<li>
+					 <a href="/admin/topic">博客管理</a>
+				</li>
+				<li>
+					 <a class="active">新建博客</a>
+				</li>
+			</ul>
+                    </div>
+					
+					
+					
+					<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="thumbnail">
+						
+						<div class="row clearfix">
+		<div class="col-md-12 column">
+		
+		 <form class="form-horizontal m-t" id="newTopicForm">
+                        <input type="hidden" id="img_url" name="ImageUrl">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">博客标题</label>
+                            <div class="col-sm-9">
+                                <input id="Title" name="Title" class="form-control" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">博客分类</label>
+                            <div class="col-sm-9">
+
+                                {{range $index,$label := .labelList}}
+                                <label>
+
+                                    {{if eq 0 $index }}
+                                    &nbsp;<input type="checkbox" checked name="LabelId" value="{{$label.LabelId}}" class="i-checks">{{$label.LabelName}}</label>
+                                    {{else}}
+
+                                &nbsp; <input type="checkbox" name="LabelId" value="{{$label.LabelId}}" class="i-checks">{{$label.LabelName}}</label>
+                                    {{end}}
+
+
+                                {{end}}
+
+
+                            </div>
+                        </div>
+                       
+                        
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">&nbsp;</label>
+                            <div class="col-sm-9">
+                                <textarea name="Content" id="Content" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <button class="btn btn-info" id="btn_blog_publish" type="button">保存</button>
+                            </div>
+                        </div>
+                    </form>
+
+		</div>
+		
+	</div>
+						
+						
+						
+                            <!-- /.table-responsive -->
+                        </div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+					
+                </div>
+				
+				 <!-- jQuery -->
+    <script src="/static/sbadmin/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/sbadmin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/static/sbadmin/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+	
+	  <script src="/static/bootstrap-jquery/js/jquery.bootstrap.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="/static/sbadmin/js/sb-admin-2.js"></script>
+	<script src="/static/layer/layer.js"></script>
+	 <script src="/static/validator/js/bootstrapValidator.js"></script>
+    <script src="/static/validator/js/language/zh_CN.js"></script>
+	<script type="text/javascript" src="/static/kindeditor/kindeditor-all.js"></script>
+<script type="text/javascript" src="/static/kindeditor/lang/zh_CN.js"></script>
+<script type="text/javascript" src="/static/js/admin/topic/new.js"></script>
+
+<script>
+      var editor;
+    KindEditor.ready(function(K) {
+        editor = K.create('#Content', {
+            resizeType : 2,
+            autoHeightMode : true,
+            width:"100%",
+			height:'400px',
+            uploadJson : '/upload/uploadImage', // 相对于当前页面的路径
+            afterBlur: function(){
+                this.sync();
+            }
+        });
+		
+		var autoheight=editor.edit.doc.body.scrollHeight;
+    	editor.edit.setHeight(autoheight);
+    });
+
+</script>
