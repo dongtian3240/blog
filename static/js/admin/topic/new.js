@@ -1,8 +1,9 @@
 
 /**新建博客**/
 var NewTopic = {
-	
+	globalUserId:0,
 		init:function(){
+			NewTopic.globalUserId = $('#_globalUserId').val();
 			NewTopic.ctrl.initEvent();
 			NewTopic.ctrl.initValidator();
 		},
@@ -62,7 +63,7 @@ var NewTopic = {
 			var formDat = $('#newTopicForm').serialize();
 			layer.load(1);
 			$.ajax({
-						url:'/admin/topic/new',
+						url:"/admin/"+NewTopic.globalUserId+"/topic/new",
 						cache:false,
 						data:formDat,
 						dataType:'json',

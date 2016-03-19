@@ -1,7 +1,9 @@
 
 
 var Topic = {
+	globalUserId:0,
 	 init:function(){
+		Topic.globalUserId = $('#_globalUserId').val();
 		Topic.ctrl.initEvent();
 	},
 	ctrl:{
@@ -10,7 +12,7 @@ var Topic = {
 			var formDat = {"topicId":id};
 			layer.load(1);
 			$.ajax({
-						url:'/admin/topic/deleteTopic',
+						url:"/admin/"+Topic.globalUserId+"/topic/deleteTopic",
 						cache:false,
 						data:formDat,
 						dataType:'json',
@@ -39,12 +41,12 @@ var Topic = {
 		initEvent:function(){
 			$('#btn_newTopic').on('click',function(){
 					
-					window.location.href = "/admin/topic/new";
+					window.location.href = "/admin/"+Topic.globalUserId+"/topic/new";
 			});
 			
 			$('.btn_editTopic').on('click',function(){
 				var id = $(this).attr("va")
-				window.location.href = "/admin/topic/edit?id=" + id;
+				window.location.href = "/admin/"+Topic.globalUserId+"/topic/edit?id=" + id;
 			});
 			
 			$('.btn_deleteTopic').on('click',function(){

@@ -1,8 +1,9 @@
 
 var Label = {
-	
+	globalUserId:0,
 	newLabelValidator:'',
 	 init:function(){
+		Label.globalUserId = $('#_globalUserId').val();
 		Label.ctrl.initEvent();
 		Label.ctrl.initDialog();
 		Label.ctrl.initValidator();
@@ -160,7 +161,7 @@ var Label = {
 			var formDat = $('#editLabelform').serialize();
 			layer.load(1);
 			$.ajax({
-						url:'/admin/label/update',
+						url:"/admin/"+Label.globalUserId+"/label/update",
 						cache:false,
 						data:formDat,
 						dataType:'json',
@@ -193,7 +194,7 @@ var Label = {
 			var formDat = {"id":id};
 			layer.load(1);
 			$.ajax({
-						url:'/admin/label/findLabelById',
+						url:"/admin/"+Label.globalUserId+"/label/findLabelById",
 						cache:false,
 						data:formDat,
 						dataType:'json',
@@ -224,7 +225,7 @@ var Label = {
 			var formDat = $('#newLabelform').serialize();
 			layer.load(1);
 			$.ajax({
-						url:'/admin/label/new',
+						url:"/admin/"+Label.globalUserId+"/label/new",
 						cache:false,
 						data:formDat,
 						dataType:'json',
@@ -255,7 +256,7 @@ var Label = {
 			var formDat = {"id":id};
 			layer.load(1);
 			$.ajax({
-						url:'/admin/label/delete',
+						url:"/admin/"+Label.globalUserId+"/label/delete",
 						cache:false,
 						data:formDat,
 						dataType:'json',

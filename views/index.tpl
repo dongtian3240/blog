@@ -85,10 +85,28 @@
 	<div class="row clearfix">
 		
 		<div class="col-md-8 column">
+		
+		
 		<div class="col-md-12 column thumbnail">
 				<span class="label label-info">最新博客</span>
 				<a class="btn pull-right" href="#">更多</a>
 				<hr>
+				
+				{{range $ind,$topic :=.pager.DataList}}
+			
+			<h2>
+				{{$topic.Title}}
+			</h2>
+			
+			<p>
+				{{$topic.KeyWords}}...<a class="btn" href="#">查看详情</a>
+			</p>
+			<p>
+				<span class="label label-default">golang</span>
+				 
+			</p>
+			
+		   {{end}}
 				<h2>
 				关于linux环境下的vim-go的环境问题
 			</h2>

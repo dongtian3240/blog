@@ -1,8 +1,9 @@
 
 /**新建博客**/
 var EditTopic = {
-	
+	     globalUserId:0,
 		init:function(){
+			EditTopic.globalUserId = $('#_globalUserId').val();
 			EditTopic.ctrl.initEvent();
 			EditTopic.ctrl.findDefaultLabel();
 			EditTopic.ctrl.initValidator();
@@ -14,7 +15,7 @@ var EditTopic = {
 				var id = $('#topicId').val();
 				var formDat = {"topicId":id};
 				$.ajax({
-						url:'/admin/label/findLabelListByTopicId',
+						url:"/admin/"+EditTopic.globalUserId+"/label/findLabelListByTopicId",
 						cache:false,
 						data:formDat,
 						dataType:'json',
@@ -92,7 +93,7 @@ var EditTopic = {
 			var formDat = $('#editTopicForm').serialize();
 			layer.load(1);
 			$.ajax({
-						url:'/admin/topic/edit',
+						url:"/admin/"+EditTopic.globalUserId+"/topic/edit",
 						cache:false,
 						data:formDat,
 						dataType:'json',
@@ -108,7 +109,7 @@ var EditTopic = {
 							if(data.Success == true) {
 								$('#editLabelwrap').dialog('close');
 								 layer.msg(data.Message,{icon: 1,time: 1000}, function(){
-										window.location.href = "/admin/topic";
+										window.location.href = "/admin/"+EditTopic.globalUserId+"/topic";
 									});
 							} else {
 								layer.msg(data.Message,{icon: 8});
